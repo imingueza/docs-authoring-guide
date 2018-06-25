@@ -1,0 +1,76 @@
+= Prerequisites
+:page-partial:
+
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+include::{partialsdir}/README.adoc[tag=metadata]
+
+// Start writing here
+
+== Create an account on GitHub
+
+You'll receive an e-mail for verifying your e-mail address. You won't be able to push to GitHub before verifying.
+
+== Install and configure an editor
+
+=== Visual Studio Code
+
+== Install and configure Git
+
+https://git-scm.com/download/
+
+=== Windows
+
+Use at least v2.16.0, as previous versions don't work with https://github.com/Microsoft/Git-Credential-Manager-for-Windows[Git Credential Manager for Windows] and GitHub.
+
+On Windows the installer doesn't run automatically, you'll find it in the `Downloads` folder.
+
+Choose the default options.
+
+Choose Visual Studio Code as Git's default editor.
+
+Adjust your PATH environment: chose "Use Git from the Windows Command Prompt".
+
+Choose "Use the OpenSSL library" as the HTTPS transport backend.
+
+Choose Unix-style line endings.
+
+Use MinTTY.
+
+Extra options.
+
+See Git GUI.
+
+Once Git is installed, Visual Studio Code doesn't show the notification. Restart Visual Studio Code.
+
+Menu > View > Integrated Terminal. `git config --global user.email "OUR_EMAIL"`. Idem with  `user.name`. Now we can commit.
+
+
+
+== Install Ruby
+
+=== Windows
+
+https://rubyinstaller.org/downloads/
+
+Use the one in bold. If the space in your disk is tight, use the equivalent to the bold one without Devkit.
+
+Installer is not automatically opened. Look into `Downloads`.
+
+Select UTF8.
+
+De-select configure MSYS2.
+
+Restart Visual Studio Code.
+
+View > Integrated Terminal
+
+`gem install asciidoctor` (asks about firewall, what to check? Any check implies Admin permissions)
+
+`gem install asciidoctror-pdf --pre`
+
+`gem install asciidoctror-diagram`
+
+Now we can disable Setting Ascii Doc: Use_asciidoctor_js.

@@ -1,0 +1,48 @@
+= Authoring documentation for Decidim
+:page-partial:
+
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+include::{partialsdir}/README.adoc[tag=metadata]
+
+// Start writing here
+
+== The easy way: editing on-line
+
+The only other sections you probably need to read are:
+
+* <<asciidoc>>
+
+* <<structure>>
+
+== Power writers
+
+[#asciidoc]
+== Introduction to Asciidoc
+
+=== Asciidoc guidelines
+
+[#structure]
+== Structure of the repository
+
+
+
+[#metadata-filling]
+== Fill up the metadata
+
+== Create a new section or chapter
+
+You can remove the line saying
+
+[source, asciidoc]
+----
+// Start writing here
+----
+
+It is useful only to avoid writing just below the last include, without an empty line, which could cause problems.
+
+=== Update the outline of the document
+
+== When something goes wrong with Git

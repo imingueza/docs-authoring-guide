@@ -1,0 +1,32 @@
+= Overview
+:page-partial:
+
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+include::{partialsdir}/README.adoc[tag=metadata]
+
+// Start writing here
+
+This guide explains the different roles and tasks involved in creating, editing (contributing to), publishing and maintaining documents for the Decidim project.
+
+The edition and publication of documentation in Decidim is Git-centric.
+https://git-scm.com/[Git] is the tool we use for version control and the coordination of collaborators.
+
+Every document has its own repository in https://github.com[GitHub].
+Every time an author introduces some changes, and these changes are approved, an automatic process is triggered that publishes the new version of the document in the relevant web pages.
+
+We can distinguish two roles involved in the process of editing and publishing documents:
+
+Document administrator :: A person with a technical profile that has the responsibility of preparing the public repository that hosts the new document, merging the changes made by different writers, and configuring the synchronization with the site showing the last version on-line.
++
+NOTE: The main ability expected from a document administrator is an understanding of how Git pull/push/merge works.
+She'll probably need to interact with a command line from time to time, but she's not expected to being able to contribute to the contents of the document.
+
+Writer :: She contributes to the contents of the document.
+// Those contributions can be of varying nature: edition, authoring, contribution or proof-reading.
+Depending on how knowledgeable they are about the needed tools, we can distinguish between *writers* and *power writers*.
+This latter group is expected to install some software tools in their computers and participate in more complex work flows.
+
+The rest of the guide is devoted to explain <<tools, how to install and configure all the needed tools>>, and how to carry out the different tasks performed by <<writers, writers>> and document <<administrators, administrators>>.

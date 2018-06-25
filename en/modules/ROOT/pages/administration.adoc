@@ -1,0 +1,36 @@
+= Administering documentation for Decidim
+:page-partial:
+
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+include::{partialsdir}/README.adoc[tag=metadata]
+
+// Start writing here
+
+== Create the repository for a new document
+
+This repository is meant to be https://help.github.com/articles/importing-a-repository-with-github-importer/[imported] (instead of cloned/forked) to create a new document for the Decidim project.
+
+Once created and configured the public repository, the next steps the administrator can take (or task a capable writer with) are:
+
+. xref:writing.adoc#metadata-filling[Fill up the metadata for the document].
+
+. <<conversion,Convert the document to Asciidoc>>, if we already have a preliminary version in Google Drive or written in any other format.
+
+. Set up the document for <<publication,publication at `docs.decidim.org`>>.
+
+[#conversion]
+== Convert a document to Asciidoc
+
+[#publication]
+== Publish at `docs.decidim.org`
+
+=== Configure the navigation
+
+== Generate a PDF file
+
+== Merge changes from writers
+
+// == Update the configuration
