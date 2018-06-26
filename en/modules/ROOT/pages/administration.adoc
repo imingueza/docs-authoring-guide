@@ -1,5 +1,8 @@
-= Administering documentation for Decidim
+[#administration]
+= Document administration
 :page-partial:
+:experimental:
+:xrefstyle: short
 
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
@@ -9,15 +12,100 @@ include::{partialsdir}/README.adoc[tag=metadata]
 
 // Start writing here
 
+This section describes all the tasks carried out by document administrators at different moments of the authoring work-flow.
+
+[#create-repository]
 == Create the repository for a new document
 
-This repository is meant to be https://help.github.com/articles/importing-a-repository-with-github-importer/[imported] (instead of cloned/forked) to create a new document for the Decidim project.
+Every document requires the creation of a new repository in Decidim's space at GitHub.
+
+.Decidim's organization page at GitHub
+****
+https://github.com/decidim
+****
+
+The document administrator needs to be a member of the Decidim organization at GitHub to be able to create new repositories for Decidim.
+Ask to an https://github.com/orgs/decidim/people?query=+role%3Aowner[owner of the Decidim organization] if you are not already a member.
+
+The steps to get the new repository are described in the following sections.
+
+=== (Step {counter:step1}) Import the template for new documents
+
+NOTE: _Importing_ a repository is a different concept from _forking_ or _creating_ one.
+
+Go to the btn:[＋ ▾] button on GitHub's top bar and select the menu:Import repository[] option, as shown in the following figure:
+
+.GitHub import option
+image::github-import-option-selection.png[Import repository option]
+
+Decidim has a https://github.com/decidim/docs-new-document-template[repository with a template for new documents] called `docs-new-document-template`.
+As shown in <<github-import-form-fig>> below:
+
+. Input `https://github.com/decidim/docs-new-document-template.git` as the repository to clone (import from).
+. Select `decidim` organization as the owner of the repository, if you have other options. If this option does not appear, you probably do not have the needed permissions (see the beginning of section <<create-repository>>).
+. Choose a name for your new repository that begins with `docs-`, a convention we use to easily find documentation repositories.
+. Press the btn:[Begin import] button.
+
+The import can take some seconds or minutes.
+
+[#github-import-form-fig]
+.GitHub import form
+image::github-import.png[Import repository, 600, align="center"]
+
+In contrast with a GitHub fork, https://help.github.com/articles/importing-a-repository-with-github-importer/[a repository import] does not keep any link to the original repository (in this case, the template).
+
+Our new repository template defines the basic file structure to facilitate:
+
+* The <<publication, online publication of the document>>.
+* The creation of multi-lingual documents (English, Spanish, Catalan).
+* Filling up all the important metadata.
+
+If you want to understand what is in the template, its contents are described in section xref:authoring.adoc[Anatomy of a document repository].
+
+=== (Step {counter:step1}) Add a short description to the repository
+
+Once the repository is created, you can visit its main page in GitHub.
+If you called it, for example, `docs-my-great-content`, the URL should be `https://github.com/decidim/docs-my-great-content`.
+
+At the top of the menu:<> Code[] panel you will see the following message: "_No description, website, or topics provided._"
+Press the btn:[Edit] button on the right to change the description.
+Try to use one single sentence, at most two.
+
+[#github-description-fig]
+.GitHub's Edit description button and topics option
+image::github-edit-description-and-topics.png[]
+
+=== (Step {counter:step1}) Add topics (labels) to the repository
+
+As shown in <<github-description-fig>>, there is also an https://help.github.com/articles/about-topics/["Add topics" option].
+Press it.
+Add at least the topics `decidim` and `decidim-docs`.
+
+=== (Step {counter:step1}) Add collaborators to the repository
+
+By default only you (the creator and administrator) can write to the recently created repository.
+To enable collective writing you must add collaborators going to menu:Settings[Collaborators & teams].
+
+[#github-collaborators-fig]
+.GitHub collaborators form
+image::github-collaborators.png[, 800, align="center"]
+
+Add the team `docs` and any other individual or team collaborator that needs access to the repository.
+Give them "Write" permission.
+
+=== (Step {counter:step1}) Protect the `master` branch and add explicit permissions to it
+
+Go to menu:Settings[Branches].
+Under "Branch protection rules", choose branch `master`.
+
+
+=== Next steps
 
 Once created and configured the public repository, the next steps the administrator can take (or task a capable writer with) are:
 
 . xref:writing.adoc#metadata-filling[Fill up the metadata for the document].
 
-. <<conversion,Convert the document to Asciidoc>>, if we already have a preliminary version in Google Drive or written in any other format.
+. <<conversion, Convert the document to Asciidoc>>, if we already have a preliminary version in Google Drive or written in any other format.
 
 . Set up the document for <<publication,publication at `docs.decidim.org`>>.
 
@@ -31,6 +119,6 @@ Once created and configured the public repository, the next steps the administra
 
 == Generate a PDF file
 
-== Merge changes from writers
+// == Merge changes from writers
 
 // == Update the configuration

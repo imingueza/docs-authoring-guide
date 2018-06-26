@@ -11,7 +11,8 @@ include::{partialsdir}/README.adoc[tag=metadata]
 
 == Create an account on GitHub
 
-You'll receive an e-mail for verifying your e-mail address. You won't be able to push to GitHub before verifying.
+You will receive an e-mail for verifying your e-mail address.
+You will not be able to push to GitHub until verifying.
 
 == Install and configure an editor
 

@@ -1,4 +1,5 @@
-= Authoring documentation for Decidim
+[#authoring]
+= Document authoring
 :page-partial:
 
 ifndef::env-site,env-github[]
@@ -24,8 +25,15 @@ The only other sections you probably need to read are:
 
 === Asciidoc guidelines
 
-[#structure]
-== Structure of the repository
+For images use simply the filename, with no directory prefix.
+
+[source, asciidoc]
+----
+image::IMAGE_FILE_NAME[]
+----
+
+[#repo-anatomy]
+== Anatomy of a document repository
 
 
 

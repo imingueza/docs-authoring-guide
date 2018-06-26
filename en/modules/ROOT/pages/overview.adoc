@@ -90,4 +90,7 @@ Writer :: She writes the contents of the document.
 Depending on how knowledgeable they are about the needed tools, we can distinguish between *writers* and *power writers*.
 This latter group is expected to install some software tools in their computers and participate in more complex work flows.
 
+All the things writers need to know are hopefully explained in section xref:authoring.adoc#authoring[Authoring documentation].
+The tasks usually carried on by document administrators are described in section xref:administration.adoc#administration[Administering documentation].
+
 // == Coordination of collaboration
