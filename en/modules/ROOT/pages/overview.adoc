@@ -20,6 +20,14 @@ By reading this document you can learn:
 * How to translate some document to a new language.
 * How to clone (fork) any of the documents and start hosting your own version.
 
+.External collaborators
+****
+People that does not take part in the core team that develops Decidim are also encouraged to contribute to any of the documents.
+Users, administrators, advocates, all are welcome.
+
+See section xref:authoring.adoc#external-collaborators[External collaborators] to know how to contribute.
+****
+
 == Markup language
 
 All documents for the Decidim project are written as text files using a markup language called https://asciidoctor.org/docs/what-is-asciidoc/[*Asciidoc*].
@@ -55,12 +63,13 @@ We refer to the text stored in the Git Repository (in Asciidoc format, as we sai
 This source then needs to be converted to some format suitable for reading, browsing or printing (e.g, HTML or PDF).
 The purpose of the repository is facilitating the authoring of documents and the coordination of collaborators.
 
-== Document publication
+== Publication
 
 All Decidim's documents that are ready to be published are rendered at:
 
 .Decidim's centralized documentation site
 ****
+[.text-center]
 https://docs.decidim.org[]
 ****
 
@@ -84,13 +93,12 @@ Document administrator :: A person with a technical profile that has the respons
 The main ability expected from a document administrator is an understanding of how Git pull/push/merge works, as she will be the reference person when some difficulty with Git arises.
 She is also expected to be able to install and run some command line tools.
 On the contrary, she is not expected to necessarily contribute to the contents of the document.
++
+The tasks usually carried on by document administrators are described in section xref:administration.adoc#administration[Document administration].
 
 Writer :: She writes the contents of the document.
 // Those contributions can be of varying nature: edition, authoring, contribution or proof-reading.
-Depending on how knowledgeable they are about the needed tools, we can distinguish between *writers* and *power writers*.
+Depending on how knowledgeable they are about the needed tools, we can distinguish between *regular writers* and *power writers*.
 This latter group is expected to install some software tools in their computers and participate in more complex work flows.
-
-All the things writers need to know are hopefully explained in section xref:authoring.adoc#authoring[Authoring documentation].
-The tasks usually carried on by document administrators are described in section xref:administration.adoc#administration[Administering documentation].
-
-// == Coordination of collaboration
++
+All the things writers need to know are hopefully explained in section xref:authoring.adoc#authoring[Document authoring].

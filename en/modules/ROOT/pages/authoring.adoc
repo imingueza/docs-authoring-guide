@@ -10,15 +10,37 @@ include::{partialsdir}/README.adoc[tag=metadata]
 
 // Start writing here
 
+Our collaboration workflow is based on GitHub.
+
+We distinguish between:
+
+* *Regular writers*, that <<regular-writers, modify files online>> with the editing interface provided by GitHub.
+* *Power writers*, that can <<power-writers, work offline>> and take advantage of the better tooling available (e.g., better spell-checkers and Asciidoc renderers) for desktop editors.
+
+Collaborators that are not part of to the Decidim team can write both online and offline.
+See <<external-collaborators>> for more details.
+
+[#regular-writers]
 == The easy way: editing on-line
 
 The only other sections you probably need to read are:
 
 * <<asciidoc>>
 
-* <<structure>>
+* <<repo-anatomy>>
 
+[#power-writers]
 == Power writers
+
+[#external-collaborators]
+== External collaborators
+
+People that does not take part in the core team that develops Decidim can use whatever editing tools they please, including those suggested in this guide for <<regular-writers, regular writers>> and <<power-writers, power writers>>.
+
+The main difference with Decidim Team members is that they are not going to immediately get writing access to Decidim's repositories (maybe never).
+They need to https://help.github.com/articles/fork-a-repo/[fork] any repository they want to modify (this does not require any authorization), and interact with the document administrators through https://help.github.com/articles/about-pull-requests/[pull requests].
+
+If you want to collaborate and have not used Git or GitHub before, you can write an email to hola@decidim.com describing the nature of your potential contribution and asking for help.
 
 [#asciidoc]
 == Introduction to Asciidoc
@@ -40,17 +62,72 @@ image::IMAGE_FILE_NAME[]
 [#metadata-filling]
 == Fill up the metadata
 
-== Create a new section or chapter
+[#create-page]
+== Create a new documentation page
 
-You can remove the line saying
+Every content we want to see converted to a single web page in https://docs.decidim.org must be written to its own Asciidoc file.
+For example, for large documents, at least every chapter or major section must have its own `.adoc` file.
+If some section is very long, it can also be split up into smaller source files/web pages.
 
-[source, asciidoc]
+The smaller the contents, the easier is to reuse them by _including_ in another place.
+But it is not necessary to make very small pages either, you still have the possibility to _link_ to any internal header from anywhere in the documentation site.
+
+In order to add a new page to your document, follow the steps in the next sections.
+
+=== (Step {counter:step:1}) Add a new Asciidoc file
+
+The file must be placed in `{LANG}/modules/ROOT/pages`.
+
+The file name should be based upon the title of the section it is going to contain, and must adhere to the following conventions:
+
+* Use only *lower case* letters, numbers, and "-" (hyphen) symbol. Avoid any other character, including punctuation symbols.
+* Avoid accents or any other character modifiers.
+* Use "-" (hyphen) to separate words.
+* The file name must be in *English*.
+* Use extension: `.adoc`.
+* Optionally reduce the length of the name if name clashes seem improbable.
+
+.Page/section file naming
+====
+If your section or chapter is named "Deliberative Democracy: How About That?" you could choose one of these names :
+
+* `deliberative-democracy-how-about-that.adoc`
+* `deliberative-democracy.adoc`
+====
+
+[IMPORTANT]
+--
+The same file name *must* be used in all languages if the document has translations.
+So, directories `{LANG}/modules/ROOT/pages` should look the same for all languages, and contained files must be named in English.
+--
+
+Copy the following text to the beginning of the file (the same text appears in file `introduction.adoc` from the template):
+
+[listing]
 ----
+= Introduction
+:page-partial:
+
+ifndef::env-site,env-github[]
+\include::_attributes.adoc[]
+endif::[]
+
+\include::{partialsdir}/README.adoc[tag=metadata]
+
 // Start writing here
 ----
 
-It is useful only to avoid writing just below the last include, without an empty line, which could cause problems.
+// // You can remove the line saying:
+//
+// [source, asciidoc]
+// ----
+// // Start writing here
+// ----
+//
+// It is useful only to avoid writing just below the last include, without an empty line, // which could cause problems.
 
-=== Update the outline of the document
+=== (Step {counter:step:1}) Add a reference to the new file in `single-page.adoc`
+
+=== (Step {counter:step:1}) Add a reference to the new file in `nav.adoc`
 
 == When something goes wrong with Git

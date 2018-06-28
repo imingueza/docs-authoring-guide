@@ -16,7 +16,7 @@ The following table shows what prerequisites are needed for every role:
 [%header, cols="60,^20,^20,^20"]
 |===
 | Prerequisite
-| Basic writer
+| Regular writer
 | Power writer
 | Document administrator
 

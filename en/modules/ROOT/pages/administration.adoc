@@ -12,15 +12,32 @@ include::{partialsdir}/README.adoc[tag=metadata]
 
 // Start writing here
 
-This section describes all the tasks carried out by document administrators at different moments of the authoring work-flow.
+This section describes all the tasks carried out by document administrators at different moments of the authoring workflow.
+
+The first and most important task is the <<create-repository, creation and configuration>> of a GitHub repository to work on a document.
+Documents follow one of two possible workflows:
+
+1. They are directly created as Asciidoc documents.
+In this case the creation of the repository is truly the first action to undertake.
+
+2. The document is written in some other (collaborative) platform, and then <<conversion, converted to Asciidoc>>.
+Here we can create the repository at any time before the conversion.
+
+[WARNING]
+--
+The conversion to Asciidoc is a *one time, single direction* action.
+
+Once a document has been converted and stored in its Git repository, trying to edit it with different procedures than described in Section xref:authoring.adoc[Document authoring] of this guide is strongly discouraged.
+--
 
 [#create-repository]
-== Create the repository for a new document
+== Create the repository for document
 
 Every document requires the creation of a new repository in Decidim's space at GitHub.
 
-.Decidim's organization page at GitHub
+.Decidim's organization page on GitHub
 ****
+[.text-center]
 https://github.com/decidim
 ****
 
@@ -29,7 +46,7 @@ Ask to an https://github.com/orgs/decidim/people?query=+role%3Aowner[owner of th
 
 The steps to get the new repository are described in the following sections.
 
-=== (Step {counter:step1}) Import the template for new documents
+=== (Step {counter:step:1}) Import the template for new documents
 
 NOTE: _Importing_ a repository is a different concept from _forking_ or _creating_ one.
 
@@ -41,7 +58,7 @@ image::github-import-option-selection.png[Import repository option]
 Decidim has a https://github.com/decidim/docs-new-document-template[repository with a template for new documents] called `docs-new-document-template`.
 As shown in <<github-import-form-fig>> below:
 
-. Input `https://github.com/decidim/docs-new-document-template.git` as the repository to clone (import from).
+. Input `https://github.com/decidim/docs-new-document-template.git` as the repository to clone (i.e. import from).
 . Select `decidim` organization as the owner of the repository, if you have other options. If this option does not appear, you probably do not have the needed permissions (see the beginning of section <<create-repository>>).
 . Choose a name for your new repository that begins with `docs-`, a convention we use to easily find documentation repositories.
 . Press the btn:[Begin import] button.
@@ -63,7 +80,7 @@ Our new repository template defines the basic file structure to facilitate:
 If you want to understand what is in the template, its contents are described in section xref:authoring.adoc[Anatomy of a document repository].
 
 [#add-collaborators]
-=== (Step {counter:step1}) Add collaborators to the repository
+=== (Step {counter:step}) Add collaborators to the repository
 
 Once the repository is created, you can visit its main page in GitHub.
 If you called it, for example, `docs-my-great-content`, the URL should be `https://github.com/decidim/docs-my-great-content`.
@@ -78,13 +95,14 @@ Give them "Write" permission.
 .GitHub collaborators form
 image::github-collaborators.png[, 800, align="center"]
 
-=== (Step {counter:step1}) Protect the `master` branch and add explicit permissions to it
+=== (Step {counter:step}) Protect the `master` branch and add explicit permissions to it
 
 Go to menu:Settings[Branches].
 Under "Branch protection rules", choose branch `master`.
 
 Select options "Protect this branch" and "Restrict who can push to this branch", and deselect all other options.
 In section "People and teams with push access" add all the people and teams that you added in <<add-collaborators>>.
+Push btn:[Save changes].
 
 .GitHub branch protection options
 image::github-branch-protection.png[]
@@ -92,9 +110,9 @@ image::github-branch-protection.png[]
 Protection of branch `master` gives us an extra guarantee that nobody will overwrite this branch by mistake.
 All changes will be incremental and it will be possible to undo them if necessary.
 
-=== (Step {counter:step1}) Add a short description to the repository
+=== (Step {counter:step}) Add a short description to the repository
 
-At the top of the menu:<> Code[] panel you will see the following message: "_No description, website, or topics provided._"
+At the top of the menu:Code[] panel you will see the following message: "_No description, website, or topics provided._"
 Press the btn:[Edit] button on the right to change the description.
 Try to use one single sentence, at most two.
 
@@ -102,13 +120,13 @@ Try to use one single sentence, at most two.
 .GitHub's Edit description button and topics option
 image::github-edit-description-and-topics.png[]
 
-=== (Step {counter:step1}) Add topics (labels) to the repository
+=== (Step {counter:step}) Add topics (labels) to the repository
 
 As shown in <<github-description-fig>>, there is also an https://help.github.com/articles/about-topics/["Add topics" option].
 Press it.
 Add at least the topics `decidim` and `decidim-docs`.
 
-=== (Step {counter:step1}) Configure other repository options
+=== (Step {counter:step}) Configure other repository options
 
 Go to menu:Settings[Options] and disable "Wikis" and "Projects".
 Leave the other options in its default configuration.
@@ -116,18 +134,26 @@ Leave the other options in its default configuration.
 .GitHub's repository options
 image::github-repo-options.png[]
 
-=== Next steps
+=== Additional steps
 
 Once created and configured the public repository, the next steps the administrator can take (or task a capable writer with) are:
 
-. xref:writing.adoc#metadata-filling[Fill up the metadata for the document].
+. xref:authoring.adoc#metadata-filling[Fill up the metadata for the document].
+
+. xref:authoring.adoc#create-page[Create an Asciidoc file] for every web page we want to show in https://docs.decidim.org[].
 
 . <<conversion, Convert the document to Asciidoc>>, if we already have a preliminary version in Google Drive or written in any other format.
 
-. Set up the document for <<publication,publication at `docs.decidim.org`>>.
+. Set up the document for <<publication, publication at `docs.decidim.org`>>.
 
 [#conversion]
 == Convert a document to Asciidoc
+
+We use a command-line conversion tool called https://pandoc.org/[Pandoc].
+See how to install it at xref:prerequisites.adoc#install-pandoc[Install Pandoc].
+
+Pandoc can convert from Libre Office, Microsoft Office, HTML, Google Docs an other formats to Asciidoc.
+
 
 [#publication]
 == Publish at `docs.decidim.org`
