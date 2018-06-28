@@ -33,7 +33,7 @@ The steps to get the new repository are described in the following sections.
 
 NOTE: _Importing_ a repository is a different concept from _forking_ or _creating_ one.
 
-Go to the btn:[＋ ▾] button on GitHub's top bar and select the menu:Import repository[] option, as shown in the following figure:
+Go to the btn:[＋ ▾] drop down menu on GitHub's top bar and select the menu:Import repository[] option, as shown in the following figure:
 
 .GitHub import option
 image::github-import-option-selection.png[Import repository option]
@@ -62,10 +62,37 @@ Our new repository template defines the basic file structure to facilitate:
 
 If you want to understand what is in the template, its contents are described in section xref:authoring.adoc[Anatomy of a document repository].
 
-=== (Step {counter:step1}) Add a short description to the repository
+[#add-collaborators]
+=== (Step {counter:step1}) Add collaborators to the repository
 
 Once the repository is created, you can visit its main page in GitHub.
 If you called it, for example, `docs-my-great-content`, the URL should be `https://github.com/decidim/docs-my-great-content`.
+
+By default only you (the creator and administrator) can write to the recently created repository.
+To enable collective writing you must add collaborators going to menu:Settings[Collaborators & teams].
+
+Add the team `docs` and any other individual or team collaborator that needs access to the repository.
+Give them "Write" permission.
+
+[#github-collaborators-fig]
+.GitHub collaborators form
+image::github-collaborators.png[, 800, align="center"]
+
+=== (Step {counter:step1}) Protect the `master` branch and add explicit permissions to it
+
+Go to menu:Settings[Branches].
+Under "Branch protection rules", choose branch `master`.
+
+Select options "Protect this branch" and "Restrict who can push to this branch", and deselect all other options.
+In section "People and teams with push access" add all the people and teams that you added in <<add-collaborators>>.
+
+.GitHub branch protection options
+image::github-branch-protection.png[]
+
+Protection of branch `master` gives us an extra guarantee that nobody will overwrite this branch by mistake.
+All changes will be incremental and it will be possible to undo them if necessary.
+
+=== (Step {counter:step1}) Add a short description to the repository
 
 At the top of the menu:<> Code[] panel you will see the following message: "_No description, website, or topics provided._"
 Press the btn:[Edit] button on the right to change the description.
@@ -81,23 +108,13 @@ As shown in <<github-description-fig>>, there is also an https://help.github.com
 Press it.
 Add at least the topics `decidim` and `decidim-docs`.
 
-=== (Step {counter:step1}) Add collaborators to the repository
+=== (Step {counter:step1}) Configure other repository options
 
-By default only you (the creator and administrator) can write to the recently created repository.
-To enable collective writing you must add collaborators going to menu:Settings[Collaborators & teams].
+Go to menu:Settings[Options] and disable "Wikis" and "Projects".
+Leave the other options in its default configuration.
 
-[#github-collaborators-fig]
-.GitHub collaborators form
-image::github-collaborators.png[, 800, align="center"]
-
-Add the team `docs` and any other individual or team collaborator that needs access to the repository.
-Give them "Write" permission.
-
-=== (Step {counter:step1}) Protect the `master` branch and add explicit permissions to it
-
-Go to menu:Settings[Branches].
-Under "Branch protection rules", choose branch `master`.
-
+.GitHub's repository options
+image::github-repo-options.png[]
 
 === Next steps
 
