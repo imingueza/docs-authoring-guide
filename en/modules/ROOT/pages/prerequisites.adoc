@@ -9,15 +9,55 @@ include::{partialsdir}/README.adoc[tag=metadata]
 
 // Start writing here
 
+This section reviews all the software you need to install and all the online services you need to register to in order to follow all the workflows described in this guide.
+
+The following table shows what prerequisites are needed for every role:
+
+[%header, cols="60,^20,^20,^20"]
+|===
+| Prerequisite
+| Basic writer
+| Power writer
+| Document administrator
+
+| <<create-github-account>>
+| ✓
+| ✓
+| ✓
+
+| <<install-editor>>
+|
+| ✓
+| ✓
+
+| <<install-git>>
+|
+| ✓
+| ✓
+
+| <<install-ruby>>
+|
+| ✓
+| ✓
+
+| <<install-pandoc>>
+|
+|
+| ✓
+|===
+
+[#create-github-account]
 == Create an account on GitHub
 
 You will receive an e-mail for verifying your e-mail address.
 You will not be able to push to GitHub until verifying.
 
+[#install-editor]
 == Install and configure an editor
 
 === Visual Studio Code
 
+[#install-git]
 == Install and configure Git
 
 https://git-scm.com/download/
@@ -49,7 +89,7 @@ Once Git is installed, Visual Studio Code doesn't show the notification. Restart
 Menu > View > Integrated Terminal. `git config --global user.email "OUR_EMAIL"`. Idem with  `user.name`. Now we can commit.
 
 
-
+[#install-ruby]
 == Install Ruby
 
 === Windows
@@ -75,3 +115,11 @@ View > Integrated Terminal
 `gem install asciidoctror-diagram`
 
 Now we can disable Setting Ascii Doc: Use_asciidoctor_js.
+
+[#install-pandoc]
+== Install Pandoc
+
+Installation on all popular platforms is well documented in the https://pandoc.org/installing.html[official installation page].
+
+For Linux systems, do not use the default package in your package manager (unless you use Arch or another similar rolling distribution) because we need a recent version of Pandoc.
+Use the binary packages (`.deb`, `.tar`) provided by the Pandoc page, or install from source.
