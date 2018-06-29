@@ -73,7 +73,7 @@ In contrast with a GitHub fork, https://help.github.com/articles/importing-a-rep
 
 Our new repository template defines the basic file structure to facilitate:
 
-* The <<publication, online publication of the document>>.
+* The <<publish, online publication of the document>>.
 * The creation of multi-lingual documents (English, Spanish, Catalan).
 * Filling up all the important metadata.
 
@@ -144,7 +144,7 @@ Once created and configured the public repository, the next steps the administra
 
 . <<conversion, Convert the document to Asciidoc>>, if we already have a preliminary version in Google Drive or written in any other format.
 
-. Set up the document for <<publication, publication at `docs.decidim.org`>>.
+. Set up the document for <<publish, publication at `docs.decidim.org`>>.
 
 [#conversion]
 == Convert a document to Asciidoc
@@ -155,7 +155,7 @@ See how to install it at xref:prerequisites.adoc#install-pandoc[Install Pandoc].
 Pandoc can convert from Libre Office, Microsoft Office, HTML, Google Docs an other formats to Asciidoc.
 
 
-[#publication]
+[#publish]
 == Publish at `docs.decidim.org`
 
 === Configure the navigation
