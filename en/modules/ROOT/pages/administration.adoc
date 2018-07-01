@@ -3,6 +3,8 @@
 :page-partial:
 :experimental:
 :xrefstyle: short
+:source-highlighter: highlightjs
+:icons: font
 
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
@@ -30,8 +32,10 @@ The conversion to Asciidoc is a *one time, single direction* action.
 Once a document has been converted and stored in its Git repository, trying to edit it with different procedures than described in Section xref:authoring.adoc[Document authoring] of this guide is strongly discouraged.
 --
 
+But before
+
 [#create-repository]
-== Create the repository for document
+== Create the repository for a new document
 
 Every document requires the creation of a new repository in Decidim's space at GitHub.
 
@@ -46,6 +50,7 @@ Ask to an https://github.com/orgs/decidim/people?query=+role%3Aowner[owner of th
 
 The steps to get the new repository are described in the following sections.
 
+:!step:
 === (Step {counter:step:1}) Import the template for new documents
 
 NOTE: _Importing_ a repository is a different concept from _forking_ or _creating_ one.
@@ -140,11 +145,100 @@ Once created and configured the public repository, the next steps the administra
 
 . xref:authoring.adoc#metadata-filling[Fill up the metadata for the document].
 
-. xref:authoring.adoc#create-page[Create an Asciidoc file] for every web page we want to show in https://docs.decidim.org[].
+. xref:authoring.adoc#create-page[Create an Asciidoc file] for every web page we want to show in https://docs.decidim.org[] (we usually show every major section or chapter of a document as a separate web page).
 
 . <<conversion, Convert the document to Asciidoc>>, if we already have a preliminary version in Google Drive or written in any other format.
 
 . Set up the document for <<publish, publication at `docs.decidim.org`>>.
+
+If you have just imported your first document template, you need to read the <<repo-anatomy, next section>> first, to understand how files are organized in the repository.
+
+[#repo-anatomy]
+== Anatomy of a document repository
+
+All document repositories have the following file structure after importing the template:
+
+[listing, subs="special characters, callouts, replacements"]
+----
+.
+├── ca <1>
+│   ├── antora.yml
+│   └── modules
+│       └── ROOT
+│           ├── [...]
+│           └── pages
+│               └── [...]
+├── CONTRIBUTING.adoc <2>
+├── en <3>
+│   ├── antora.yml <4>
+│   └── modules
+│       └── ROOT
+│           ├── assets
+│           │   ├── attachments <5>
+│           │   └── images <6>
+│           ├── _attributes.adoc <7>
+│           ├── examples <8>
+│           ├── nav.adoc <9>
+│           └── pages <10>
+│               ├── _attributes.adoc <11>
+│               ├── contributing.adoc <12>
+│               ├── doc-info.adoc <13>
+│               ├── introduction.adoc <14>
+│               ├── _partials <15>
+│               │   ├── CONTRIBUTING.adoc <16>
+│               │   └── README.adoc <17>
+│               └── single-page.adoc <18>
+├── es <19>
+│   ├── antora.yml
+│   └── modules
+│       └── ROOT
+│           ├── [...]
+│           └── pages
+│               └── [...]
+├── LICENSE <20>
+└── README.adoc <21>
+----
+<1> Directory for the Catalan version, with some parts elided.
+Some parts have been elided, but it has the same structure as the English directory.
+<2> Authorship criteria and how to contribute to this document.
+It is an exact copy of +++<i class="conum" data-value="16"></i><b>16</b>+++, cloned here for easy browsing from GitHub web site.
+<3> Directory for the English version.
+<4> File with configuration information for the xref:administration.adoc#publish[publication of the document] in the documentation site.
+<5> All files to be downloaded from the website (e.g. PDF files) belong to this directory.
+<6> All images (in PNG, SVG or JPEG format) are stored here.
+<7> You do not need to change this file.
+It defines some Asciidoc attributes and is included in +++<i class="conum" data-value="11"></i><b>11</b>+++.
+<8> If you need to include (parts of) code listings in your documentation, put your source code files in this directory.
+<9> Navigation file for xref:administration.adoc#publish[publication of the document] in the documentation site.
+<10> All text is placed in this directory, with an `.adoc` file for every chapter or section.
+<11> You do not need to change this file.
+It defines some Asciidoc attributes.
+It needs to be included in every page in +++<i class="conum" data-value="10"></i><b>10</b>+++ for a correct while editing.
+<12> You do not need to modify this file.
+It can be used in the navigation to show the information contained in +++<i class="conum" data-value="16"></i><b>16</b>+++ (authoring and contributing).
+<13> You do not need to modify this file.
+It can be used in the navigation to show the information contained in +++<i class="conum" data-value="17"></i><b>17</b>+++ (metadata).
+<14> An file example for a possible section or chapter.
+Rename the file if you do not want to have any section named "Introduction".
+<15> Put in this directory `.adoc` files that you want only to `include` from other `.adoc` files but without generating a proper page to be independently shown in the documentation website.
+<16> Authorship criteria and how to contribute to this document.
+You do not need to change this file.
+<17> Metadata file: it defines a value for attributes like `\{title}`, `\{authors}`, `\{summary}`, etc. that can be reused all across the document source files.
+<18> A file including all other `.adoc` files.
+See xref:authoring#add-ref-to-single-page[section Add a reference to the new file in `single-page.adoc`].
+<19> Directory for the Spanish version, with some parts elided.
+<20> The GFDL-1.3 license.
+The CC-BY-SA-4.0 license is not included in the repository, it is enough to refer to it in the needed places.
+<21> Metadata file.
+It is an exact copy of +++<i class="conum" data-value="17"></i><b>17</b>+++, cloned here for easy browsing from GitHub web site.
+You need to copy the file again every time +++<i class="conum" data-value="17"></i><b>17</b>+++ is modified.
+
+[NOTE]
+--
+This structure may seem artificially complex, but the web publishing tool relies on it to automatically generate an static site.
+
+The most important part is that `.adoc` files must be placed in a `pages` directory under a `modules/ROOT` subtree.
+--
 
 [#conversion]
 == Convert a document to Asciidoc
@@ -153,7 +247,6 @@ We use a command-line conversion tool called https://pandoc.org/[Pandoc].
 See how to install it at xref:prerequisites.adoc#install-pandoc[Install Pandoc].
 
 Pandoc can convert from Libre Office, Microsoft Office, HTML, Google Docs an other formats to Asciidoc.
-
 
 [#publish]
 == Publish at `docs.decidim.org`
