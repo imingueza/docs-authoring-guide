@@ -3,7 +3,7 @@
 //
 // MANDATORY. URL pointing to a Git repository with the source code of the
 // document. Something like 'https://github.com/decidim/docs-features'.
-:_public_repo_url:
+:_public_repo_url: https://github.com/decidim/docs-authoring-guide
 //
 // MANDATORY. Title of the document. In web format, It appears as a heading of
 // level 1. In PDF format, it appears in a title page.
@@ -24,7 +24,7 @@
 //
 // MANDATORY. See this field description in file CONTRIBUTING.adoc.
 // below.
-:authors: Decidim Team
+:authors: Guillem Marpons
 //
 // OPTIONAL. See this field description in file CONTRIBUTING.adoc.
 // below.
@@ -40,7 +40,7 @@
 //
 // OPTIONAL. See this field description in file CONTRIBUTING.adoc.
 // below.
-:_participants:
+:_participants: Carles Muiños
 //
 // MANDATORY. Summary of the contents of the document. This would correspond to
 // the "abstract" in an academic publication. Do not intercalate empty lines.
