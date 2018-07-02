@@ -23,45 +23,13 @@ We distinguish between:
 Collaborators that are not part of to the Decidim team can write both online and offline.
 See <<external-collaborators>> for more details.
 
-[#regular-writers]
-== The easy way: editing on-line
+[#folder-structure]
+== Folder structure of a document
 
-The only other sections you probably need to read are:
+As explained in xref:overview.adoc#repos-and-vc[Repositories and version control], every document is stored in a _file repository_.
+All our repositories are based upon a template that sets up the same structure.
 
-* <<asciidoc>>
-
-* <<where-are-files>>
-
-[#power-writers]
-== Power writers
-
-[#external-collaborators]
-== External collaborators
-
-People that does not take part in the core team that develops Decidim can use whatever editing tools they please, including those suggested in this guide for <<regular-writers, regular writers>> and <<power-writers, power writers>>.
-
-The main difference with Decidim Team members is that they are not going to immediately get writing access to Decidim's repositories (maybe never).
-They need to https://help.github.com/articles/fork-a-repo/[fork] any repository they want to modify (this does not require any authorization), and interact with the document administrators through https://help.github.com/articles/about-pull-requests/[pull requests].
-
-If you want to collaborate and have not used Git or GitHub before, you can write an email to hola@decidim.com describing the nature of your potential contribution and asking for help.
-
-[#asciidoc]
-== Introduction to Asciidoc
-
-=== Asciidoc guidelines
-
-For images use simply the filename, with no directory prefix.
-
-[source, asciidoc]
-----
-image::IMAGE_FILE_NAME[]
-----
-
-[#where-are-files]
-== Where files are placed in a repository
-
-All our document repositories have the same structure.
-The following figure shows the folder hierarchy and where each type of file is placed:
+The following figure shows the folder hierarchy and where each type of file is placed in a repository containing one of our documents:
 
 [listing, subs="special characters, callouts, replacements, quotes"]
 ----
@@ -104,8 +72,111 @@ See <<add-ref-to-single-page>>.
 <10> Folder for the Spanish version.
 It has the same structure as the English version.
 
-[#metadata-filling]
+You can browse online a repository containing one of our documents, e.g. https://github.com/decidim/docs-features/tree/new-template, and check that this folder structure is fulfilled.
+
+A more in-depth description of this folder structure is given in xref:administration#repo-anatomy[Anatomy of a repository].
+
+[#regular-writers]
+== The easy way: editing on-line
+
+The only other sections you probably need to read are:
+
+* <<asciidoc>>
+
+* <<folder-structure>>
+
+[#power-writers]
+== Power writers
+
+[#external-collaborators]
+== External collaborators
+
+People that does not take part in the core team that develops Decidim can use whatever editing tools they please, including those suggested in this guide for <<regular-writers, regular writers>> and <<power-writers, power writers>>.
+
+The main difference with Decidim Team members is that they are not going to immediately get writing access to Decidim's repositories (maybe never).
+They need to https://help.github.com/articles/fork-a-repo/[fork] any repository they want to modify (this does not require any authorization), and interact with the document administrators through https://help.github.com/articles/about-pull-requests/[pull requests].
+
+If you want to collaborate and have not used Git or GitHub before, you can write an email to hola@decidim.com describing the nature of your potential contribution and asking for help.
+
+[#asciidoc]
+== Introduction to Asciidoc
+
+=== Asciidoc guidelines
+
+For images use simply the filename, with no directory prefix.
+
+[source, asciidoc]
+----
+image::IMAGE_FILE_NAME[]
+----
+
+[#fill-up-metadata]
 == Fill up the metadata
+
+For every document we need to define some basic information:
+
+* Title
+* Version
+* Authors
+* Summary
+* Keywords
+* [...]
+
+Most of this values are defined in one single place (well, once per language, in fact), and then reused everywhere.
+In this way we do not need to replace more than one string when one of this values is updated, and we keep things consistent.
+The exception is the title of the document, that is defined twice, but let document administrators xref:administrators.adoc#document-config-file[handle this].
+
+This is possible thanks to what it is called _attribute_ in Asciidoc terminology.
+Inside an Asciidoc document we can define a series of attributes in this way:
+
+[code, asciidoc]
+----
+:doctitle: Eleanor Rigby (Lyrics)
+:authors: John Lennon, Paul McCartney
+----
+
+As you can see, every attribute is defined in a different line, with the name of the attribute between colons (`:`).
+
+WARNING: The blank space between the name of the attribute and the value we assign to it is mandatory.
+
+Then we can write `\{doctitle}` or `\{authors}` anywhere in the same `.adoc` file (or any `.adoc` file that includes the one assigning a value to those attributes) and these placeholders will be replaced to the assigned value ("Eleanor Rigby (Lyrics)" and "John Lennon, Paul McCartney" respectively).
+
+The place where all the relevant metadata for a document is defined (for the English language) is:
+
+.Metadata file path (English)
+****
+[.text-center]
+`en/modules/ROOT/pages/_partials/README.adoc`
+****
+
+Open this file, either online or with your desktop editor, and you will see at the beginning of the file a list of attributes.
+Every attribute is preceded by an explanation of what this attribute is used for, and if it is mandatory to assign it a value.
+The list of attributes ends with a line with the following content:
+
+[code, asciidoc]
+----
+// end::metadata[]
+----
+
+Lines beginning with `//` are not processed when generating HTML or other formats from Asciidoc.
+Do not touch anything after this line.
+
+The value of an attribute can be:
+
+* A single word (or a number, or a date, etc.)
+* A sentence
+* A paragraph
+
+[WARNING]
+--
+Do not write more than one paragraph as the value of an attribute.
+When editing attributes in the `README.adoc` file, *do not leave blank lines between attribute definitions*.
+--
+
+The `README.adoc` file is included in all the other `.adoc` files contained in the document.
+This means that, once they are set up, you can use any of the attributes in any other file.
+Some of the files already present in the repository use these attributes in different ways.
+For instance, file `doc-info.adoc` formats all metadata in a table for display in both HTML and PDF format.
 
 [#create-page]
 == Create a new documentation page
