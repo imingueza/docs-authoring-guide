@@ -178,6 +178,11 @@ This means that, once they are set up, you can use any of the attributes in any 
 Some of the files already present in the repository use these attributes in different ways.
 For instance, file `doc-info.adoc` formats all metadata in a table for display in both HTML and PDF format.
 
+// [IMPORTANT]
+// --
+// Unfortunately, every time we change the file `en/modules/ROOT/pages/_partials/README.adoc`
+// --
+
 [#create-page]
 == Create a new documentation page
 
@@ -191,7 +196,7 @@ But it is not necessary to make very small pages either, you still have the poss
 In order to add a new page to your document, follow the steps in the next sections.
 
 :!step:
-=== (Step {counter:step:1}) Add a new Asciidoc file
+=== (Step {counter:step:1}) Add a new Asciidoc file to the repository
 
 The file must be placed in `{LANG}/modules/ROOT/pages`.
 
@@ -273,7 +278,7 @@ For regular sections or chapters, use the second slot, and place the new `includ
 Leave always a blank line between `include` directives.
 The first and third slots are for preambles and appendixes, respectively.
 
-At the beginning you will find a directive
+At the beginning of the second slot you will find a directive
 
 [source, asciidoc]
 ----
@@ -281,7 +286,7 @@ At the beginning you will find a directive
 ----
 
 given as example.
-Remove it if your document does not have a section called "Introduction".
+Replace it if your document does not contain a file named `introduction.adoc`.
 
 File `single-page.adoc` has three purposes:
 

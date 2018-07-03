@@ -32,8 +32,6 @@ The conversion to Asciidoc is a *one time, single direction* action.
 Once a document has been converted and stored in its Git repository, trying to edit it with different procedures than described in Section xref:authoring.adoc[Document authoring] of this guide is strongly discouraged.
 --
 
-But before
-
 [#create-repository]
 == Create the repository for a new document
 
@@ -143,7 +141,7 @@ image::github-repo-options.png[]
 
 Once created and configured the public repository, the next steps the administrator can take (or task a capable writer with) are:
 
-. xref:authoring.adoc#metadata-filling[Fill up the metadata for the document].
+. xref:authoring.adoc#fill-up-metadata[Fill up the metadata for the document].
 
 . xref:authoring.adoc#create-page[Create an Asciidoc file] for every web page we want to show in https://docs.decidim.org[] (we usually show every major section or chapter of a document as a separate web page).
 
@@ -246,12 +244,71 @@ The most important part is that `.adoc` files must be placed in a `pages` direct
 We use a command-line conversion tool called https://pandoc.org/[Pandoc].
 See how to install it at xref:prerequisites.adoc#install-pandoc[Install Pandoc].
 
-Pandoc can convert from Libre Office, Microsoft Office, HTML, Google Docs an other formats to Asciidoc.
+Pandoc can convert from Libre Office, Microsoft Office, HTML, and many other formats to Asciidoc.
+
+Imagine you have a Microsoft Word (sic) document called `MyAwesomeDoc.docx`.
+You can run (copy it as a single line command):
+
+[source, shell]
+--
+pandoc --to=asciidoc --wrap=none --atx-headers  --extract-media=images --output=my-awesome-document.adoc MyAwesomeDoc.docx
+--
+
+A beautiful Asciidoc file called `my-awesome-document.adoc` will be created with the text of your document.
+If the original document contains any image, an `images` directory will appear containing a file for each image.
+Images will be correctly referenced in the Asciidoc file.
+
+The above command is independent of input format, you only need to change your input and output file names (e.g. replace `MyAwesomeDoc.docx` to `MyAwesomeDoc.html`).
+Option `--wrap=none` means that lines will not be cut at some fixed width (by default 72 characters) at it is typically done in source code.
+
+Option `--atx-headers` means headers will be set as
+
+[source, asciidoc]
+--
+= Introduction
+--
+
+and not
+
+[source, asciidoc]
+--
+Introduction
+~~~~~~~~~~~~
+--
+
+Some recommendations when you convert with Pandoc:
+
+. Unfortunately, conversion from Microsoft Word or HTML seems to work better than from OpenDocument (`.odt`).
+If your original document is in Google Drive, you can choose to store a local copy in either Word (menu:File[Download as, Microsoft Word (.docx)]) or HTML (menu:File[Download as, Web Page (.html, zipped)]).
+. Which conversion path is best depends on the document.
+For complex documents it may be worthwhile to try some possibilities before choosing.
+. Do not convert full documents, first copy each section in a different file and then convert section by section.
+. Do not copy the front page or the table of contents.
+Those need to be re-created from Asciidoc.
+. Remove section numbering before converting.
+We want Asciidoc to number sections (and figures, tables, etc.) automatically.
+This can be done in a single action if your original document uses header styles consistently.
+It can also be done after the conversions, but it is usually more work.
+
+After the conversion, you will need to adjust some things manually:
+
+. When you move your files to the repository, images will be placed under the default image directory, `assets/images`, and all references to images in your `.adoc` files will need to be adapted accordingly (in essence, its path removed).
+. Header identifiers (or any other element identifier) could have been created, and could be useful.
+If you want to rename them, do it consistently.
+If some of them are spurious, remove them.
+. Cross references and footnotes may need manual intervention also.
+
+Pandoc has many other options described in the http://pandoc.org/MANUAL.html[Pandoc User's Guide].
 
 [#publish]
 == Publish at `docs.decidim.org`
 
+[#document-config-file]
+=== Set up the document configuration file
+
 === Configure the navigation
+
+=== Add the document to the site repository
 
 == Generate a PDF file
 
