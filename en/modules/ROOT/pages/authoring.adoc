@@ -129,7 +129,7 @@ The exception is the title of the document, that is defined twice, but let docum
 This is possible thanks to what it is called _attribute_ in Asciidoc terminology.
 Inside an Asciidoc document we can define a series of attributes in this way:
 
-[code, asciidoc]
+[source, asciidoc]
 ----
 :doctitle: Eleanor Rigby (Lyrics)
 :authors: John Lennon, Paul McCartney
@@ -153,7 +153,7 @@ Open this file, either online or with your desktop editor, and you will see at t
 Every attribute is preceded by an explanation of what this attribute is used for, and if it is mandatory to assign it a value.
 The list of attributes ends with a line with the following content:
 
-[code, asciidoc]
+[source, asciidoc]
 ----
 // end::metadata[]
 ----
