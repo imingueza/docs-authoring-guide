@@ -1,5 +1,6 @@
 [#authoring]
 = Document authoring
+:experimental:
 :page-partial:
 :source-highlighter: highlightjs
 :icons: font
@@ -10,10 +11,9 @@ endif::[]
 
 include::{partialsdir}/README.adoc[tag=metadata]
 
-
 // Start writing here
 
-Our collaboration workflow is based on GitHub.
+Our collaboration workflow is based on Git.
 
 We distinguish between:
 
@@ -23,11 +23,46 @@ We distinguish between:
 Collaborators that are not part of to the Decidim team can write both online and offline.
 See <<external-collaborators>> for more details.
 
+[#regular-writers]
+== Editing on-line on GitHub
+
+NOTE: TODO: Adapt https://github.com/WGBH/pbucore/wiki/Contributing-to-the-project-through-Github-web-interface.
+
+The only other sections you probably need to read are:
+
+* <<asciidoc>>
+
+* <<folder-structure>>
+
+[#asciidoc]
+== How to write Asciidoc
+
+We use Asciidoc as our markup language.
+There is a quite complete http://asciidoctor.org/docs/asciidoc-writers-guide/[Asciidoc tutorial].
+
+You can easily get acquainted with Asciidoc and try its features using the online editor https://asciidoclive.com[AsciidocLIVE].
+
+When you try to do more complex things you may need the http://asciidoctor.org/docs/user-manual/[Asciidoc User Manual], that contains a complete reference for the language.
+
+=== Asciidoc guidelines
+
+We try to adhere to http://asciidoctor.org/docs/asciidoc-recommended-practices/[good Asciidoc writing practices].
+
+There are some guidelines that are specific to our setup:
+
+* For images, you simply need to write the filename (including extension), with no directory prefix:
++
+[source, asciidoc, subs="quotes"]
+----
+image::__IMAGE_FILE_NAME__[]
+----
+
 [#folder-structure]
 == Folder structure of a document
 
 As explained in xref:overview.adoc#repos-and-vc[Repositories and version control], every document is stored in a _file repository_.
 All our repositories are based upon a template that sets up the same structure.
+You can navigate this structure both on GitHub or in your computer if you locally clone the GitHub repository.
 
 The following figure shows the folder hierarchy and where each type of file is placed in a repository containing one of our documents:
 
@@ -76,39 +111,34 @@ You can browse online a repository containing one of our documents, e.g. https:/
 
 A more in-depth description of this folder structure is given in xref:administration#repo-anatomy[Anatomy of a repository].
 
-[#regular-writers]
-== The easy way: editing on-line
-
-The only other sections you probably need to read are:
-
-* <<asciidoc>>
-
-* <<folder-structure>>
-
 [#power-writers]
-== Power writers
+== Power writing with Visual Studio Code
 
-[#external-collaborators]
-== External collaborators
+In this section we assume you have xref:prerequisites.adoc#install-vscode[installed Visual Studio Code].
 
-People that does not take part in the core team that develops Decidim can use whatever editing tools they please, including those suggested in this guide for <<regular-writers, regular writers>> and <<power-writers, power writers>>.
+=== Clone a repository to work offline
 
-The main difference with Decidim Team members is that they are not going to immediately get writing access to Decidim's repositories (maybe never).
-They need to https://help.github.com/articles/fork-a-repo/[fork] any repository they want to modify (this does not require any authorization), and interact with the document administrators through https://help.github.com/articles/about-pull-requests/[pull requests].
+To edit with Visual Studio Code you need to clone a GitHub repository locally in your own computer:
 
-If you want to collaborate and have not used Git or GitHub before, you can write an email to hola@decidim.com describing the nature of your potential contribution and asking for help.
+. Go to the GitHub page of the document you want to work on, e.g., `https://github.com/decidim/docs-social-contract`.
+. Press button btn:[Clone or download].
+. Copy the repository URL for HTTPS.
+. In Visual Studio Code, go to menu:View[Command Palette] and select command `Git: Clone`.
+. Paste the URL of the repository and press kbd:[Enter].
+. Select the destination folder.
+A new folder with the name of the repository will be created inside the folder you select.
 
-[#asciidoc]
-== Introduction to Asciidoc
+Now Visual Studio Code gives you the option of opening the new created folder.
+You can open it, but it is better to follow the advice given in <<vscode-spell-checker>>.
 
-=== Asciidoc guidelines
+=== Configure GitHub credentials
 
-For images use simply the filename, with no directory prefix.
+NOTE: TODO.
 
-[source, asciidoc]
-----
-image::IMAGE_FILE_NAME[]
-----
+[#vscode-spell-checker]
+=== Use the spell checker
+
+NOTE: TODO.
 
 [#fill-up-metadata]
 == Fill up the metadata
@@ -170,7 +200,7 @@ The value of an attribute can be:
 [WARNING]
 --
 Do not write more than one paragraph as the value of an attribute.
-When editing attributes in the `README.adoc` file, *do not leave blank lines between attribute definitions*.
+// When editing attributes in the `README.adoc` file, *do not leave blank lines between attribute definitions*.
 --
 
 The `README.adoc` file is included in all the other `.adoc` files contained in the document.
@@ -198,7 +228,7 @@ In order to add a new page to your document, follow the steps in the next sectio
 :!step:
 === (Step {counter:step:1}) Add a new Asciidoc file to the repository
 
-The file must be placed in `{LANG}/modules/ROOT/pages`.
+The file must be placed in `\{LANG}/modules/ROOT/pages`.
 
 The file name should be based upon the title of the section it is going to contain, and must adhere to the following conventions:
 
@@ -230,7 +260,10 @@ Copy the following text to the beginning of the file (the same text appears in f
 [source, asciidoc]
 ----
 = Introduction <1>
+:experimental:
+:icons: font
 :page-partial:
+:source-highlighter: highlightjs
 
 \ifndef::env-site,env-github[]
 include::_attributes.adoc[] <2>
@@ -273,7 +306,7 @@ If your file is named `deliberative-democracy.adoc`, add a line
 To `single-page.adoc`.
 ====
 
-In the file you will find highlighted 3 places where the inclusion is possible.
+In the file you will find highlighted 2 places where the inclusion is possible.
 For regular sections or chapters, use the second slot, and place the new `include` in the correct order with respect the already existing sections.
 Leave always a blank line between `include` directives.
 The first and third slots are for preambles and appendixes, respectively.
@@ -296,4 +329,37 @@ File `single-page.adoc` has three purposes:
 
 === (Step {counter:step:1}) Add a reference to the new file in `nav.adoc`
 
+File [.path]#\{LANG}/modules/ROOT/nav.adoc# can contain references to any files or sections in the documents.
+Its items and sub-items are used to present a navigation menu for the document (you can think of it as a table of contents).
+
+NOTE: TODO: navigation menu screenshot.
+
+Add a reference to the new file:
+
+.Reference from `nav.adoc`
+====
+If your file is named `deliberative-democracy.adoc`, add a line
+
+[source, asciidoc]
+----
+* xref:deliberative-democracy.adoc[Deliberative democracy]
+----
+
+To `nav.adoc`.
+
+The text between brackets is what will be shown in the navigation menu.
+====
+
 == When something goes wrong with Git
+
+NOTE: TODO
+
+[#external-collaborators]
+== External collaborators
+
+People that does not take part in the core team that develops Decidim can use whatever editing tools they please, including those suggested in this guide for <<regular-writers, regular writers>> and <<power-writers, power writers>>.
+
+The main difference with Decidim Team members is that they are not going to immediately get writing access to Decidim's repositories (maybe never).
+They need to https://help.github.com/articles/fork-a-repo/[fork] any repository they want to modify (this does not require any authorization), and interact with the document administrators through https://help.github.com/articles/about-pull-requests/[pull requests].
+
+If you want to collaborate and have not used Git or GitHub before, you can write an email to hola@decidim.com describing the nature of your potential contribution and asking for help.

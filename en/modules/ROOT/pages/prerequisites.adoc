@@ -75,10 +75,12 @@ You can start patching Decidim documents with the online editor provided by GitH
 The editor we recommend and use throughout this guide is Visual Studio Code.
 You can probably get the same features with other free software editors and IDEs (Atom, Brackets, Emacs, Vim, etc), but this guide assumes Visual Studio Code is used.
 
+[#install-vscode]
 === Install Visual Studio Code
 
 To install Visual Studio Code go to https://code.visualstudio.com/Download[].
 You will find installers for different GNU/Linux distributions, Windows, and Mac OS X.
+In most cases you can accept the default options presented by the installer.
 
 There are a number of extensions that can be easily installed and will greatly improve your Asciidoc editing process.
 In the menu go to menu:View[Extensions], install and enable the following extensions (you do not need a browser to find them, there is an integrated search box):

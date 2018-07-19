@@ -49,9 +49,9 @@ Ask to an https://github.com/orgs/decidim/people?query=+role%3Aowner[owner of th
 The steps to get the new repository are described in the following sections.
 
 :!step:
-=== (Step {counter:step:1}) Import the template for new documents
+=== (Step {counter:step:1}) Import the repository template for new documents
 
-NOTE: _Importing_ a repository is a different concept from _forking_ or _creating_ one.
+NOTE: _Importing_ a repository is a different concept from _forking_ or _creating_ an empty one.
 
 Go to the btn:[＋ ▾] drop down menu on GitHub's top bar and select the menu:Import repository[] option, as shown in the following figure:
 
@@ -194,7 +194,9 @@ All document repositories have the following file structure after importing the 
 │           └── pages
 │               └── [...]
 ├── LICENSE <20>
-└── README.adoc <21>
+├── README.adoc <21>
+├── .editorconfig <22>
+└── .gitignore <23>
 ----
 <1> Directory for the Catalan version, with some parts elided.
 Some parts have been elided, but it has the same structure as the English directory.
@@ -230,6 +232,11 @@ The CC-BY-SA-4.0 license is not included in the repository, it is enough to refe
 <21> Metadata file.
 It is an exact copy of +++<i class="conum" data-value="17"></i><b>17</b>+++, cloned here for easy browsing from GitHub web site.
 You need to copy the file again every time +++<i class="conum" data-value="17"></i><b>17</b>+++ is modified.
+<22> An https://editorconfig.org/[EditorConfig] file.
+In combination with the xref:prerequisites.adoc#editorconfig-extension[EditorConfig VS Code extension], it facilitates uniform line-ending and other conventions across different OSs.
+The contents of this file should not be modified.
+<23> Initial [.path]#.gitignore# file.
+If you add items to it remember to commit the changes.
 
 [NOTE]
 --
@@ -303,6 +310,8 @@ Pandoc has many other options described in the http://pandoc.org/MANUAL.html[Pan
 [#publish]
 == Publish at `docs.decidim.org`
 
+NOTE: TODO.
+
 [#document-config-file]
 === Set up the document configuration file
 
@@ -311,6 +320,8 @@ Pandoc has many other options described in the http://pandoc.org/MANUAL.html[Pan
 === Add the document to the site repository
 
 == Generate a PDF file
+
+NOTE: TODO.
 
 // == Merge changes from writers
 
