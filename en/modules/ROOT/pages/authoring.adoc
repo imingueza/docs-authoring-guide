@@ -13,22 +13,28 @@ include::{partialsdir}/README.adoc[tag=metadata]
 
 // Start writing here
 
-Our collaboration workflow is based on Git.
+Our collaborative editing process is based on Git and GitHub.
 
 We distinguish between:
 
 * *Regular writers*, that <<regular-writers, modify files online>> with the editing interface provided by GitHub.
 * *Power writers*, that can <<power-writers, work offline>> and take advantage of the better tooling available (e.g., better spell-checkers and Asciidoc renderers) for desktop editors.
 
-Collaborators that are not part of to the Decidim team can write both online and offline.
+Collaborators that are not part of to the Decidim team can write both online and offline, depending on their proficiency with offline tools.
 See <<external-collaborators>> for more details.
 
 [#regular-writers]
 == Editing on-line on GitHub
 
+The easiest way of editing any of the Decidim's documents is using GitHub's own integrated editor.
+Once you are xref:prerequisites.adoc#create-github-account[logged into GitHub] you have two ways to arrive to the text you need to modify:
+
+* If you are visiting our documentation site at https://docs.decidim.org, you can open the online editor on any contents by following the "Edit this page" link.
+* You can navigate the source folder tree of any document in https://github.com/decidim?q=docs, select a file and press the edition button.
+
 NOTE: TODO: Adapt https://github.com/WGBH/pbucore/wiki/Contributing-to-the-project-through-Github-web-interface.
 
-The only other sections you probably need to read are:
+The only other sections you probably need to read for this lightweight editing workflow are:
 
 * <<asciidoc>>
 
@@ -48,7 +54,7 @@ When you try to do more complex things you may need the http://asciidoctor.org/d
 
 We try to adhere to http://asciidoctor.org/docs/asciidoc-recommended-practices/[good Asciidoc writing practices].
 
-There are some guidelines that are specific to our setup:
+Some highlights, and some guidelines that are specific to our setup follow:
 
 * For images, you simply need to write the filename (including extension), with no directory prefix:
 +
@@ -56,6 +62,33 @@ There are some guidelines that are specific to our setup:
 ----
 image::__IMAGE_FILE_NAME__[]
 ----
+
+* Use ATX headers, this is, as example:
++
+[source, asciidoc]
+--
+= Introduction
+--
++
+instead of
++
+[source, asciidoc]
+--
+Introduction
+~~~~~~~~~~~~
+--
++
+Both are syntactically correct Asciidoc, but the former is more maintainable.
+
+* Try to write one sentence per line:
++
+--
+. Try to place a manual line break after every sentence.
+This will not be the case for text converted with Pandoc, but you can apply this rule for newly written text.
+. Do not split long sentences with extra line breaks (neither manually nor automatically), leave your editor do the _visual_ line wrapping for you.
+--
++
+Text written in this manner is better suited to get put under version control and better visualized in a variety of editors.
 
 [#folder-structure]
 == Folder structure of a document
@@ -128,8 +161,8 @@ To edit with Visual Studio Code you need to clone a GitHub repository locally in
 . Select the destination folder.
 A new folder with the name of the repository will be created inside the folder you select.
 
-Now Visual Studio Code gives you the option of opening the new created folder.
-You can open it, but it is better to follow the advice given in <<vscode-spell-checker>>.
+Now Visual Studio Code gives you the option of opening the new created folder, or adding it to the current workspace.
+We suggest to cancel and reject both options, and then follow the advice given in <<vscode-spell-checker>>.
 
 === Configure GitHub credentials
 
@@ -138,7 +171,20 @@ NOTE: TODO.
 [#vscode-spell-checker]
 === Use the spell checker
 
-NOTE: TODO.
+Assuming you have xref:prerequisites.adoc#spell-checker-extension[installed the Visual Studio Code spell checker] and some dictionaries, you can set up a language at folder level.
+
+Our advice is to go to menu:File[Open Folder] and, instead of opening the root folder of a repository, open one of the language folders, i.e., either [.path]#ca#, or [.path]#en#, or [.path]#es# in our <<folder structure, standard template structure>>.
+In this way you can easily configure the language of the folder and your set up will be stored by Visual Studio Code for next sessions:
+
+. When editing some file in the folder, press the file name indicator in the down left corner of the editing window.
++
+image::vscode-filename-indicator.png[]
+
+. In the language selection panel, enable the "Folder" level.
+In the "Folder" column, enable the language you are editing for (british English in the example image) and disable all other languages.
++
+image::vscode-select-languages.png[]
+
 
 [#fill-up-metadata]
 == Fill up the metadata
@@ -252,7 +298,7 @@ If your section or chapter is named "Deliberative Democracy: How About That?" tw
 [IMPORTANT]
 --
 The same file name *must* be used in all languages if the document has translations.
-So, directories `en/modules/ROOT/pages`, `ca/modules/ROOT/pages` and `es/modules/ROOT/pages` should look all the same, and all contain files named in English.
+So, folders `en/modules/ROOT/pages`, `ca/modules/ROOT/pages` and `es/modules/ROOT/pages` should all contain the same files, and all files should be named in English.
 --
 
 Copy the following text to the beginning of the file (the same text appears in file `introduction.adoc` from the template), replacing header "Introduction" to the true title of your new section:

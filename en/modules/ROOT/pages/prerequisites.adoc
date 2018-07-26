@@ -76,13 +76,13 @@ The editor we recommend and use throughout this guide is Visual Studio Code.
 You can probably get the same features with other free software editors and IDEs (Atom, Brackets, Emacs, Vim, etc), but this guide assumes Visual Studio Code is used.
 
 [#install-vscode]
-=== Install Visual Studio Code
+=== Install Visual Studio Code and extensions
 
 To install Visual Studio Code go to https://code.visualstudio.com/Download[].
 You will find installers for different GNU/Linux distributions, Windows, and Mac OS X.
 In most cases you can accept the default options presented by the installer.
 
-There are a number of extensions that can be easily installed and will greatly improve your Asciidoc editing process.
+There are a number of extensions that can be easily installed and will greatly improve your Asciidoc editing experience.
 In the menu go to menu:View[Extensions], install and enable the following extensions (you do not need a browser to find them, there is an integrated search box):
 
 [#asciidoc-extension]
@@ -90,18 +90,24 @@ In the menu go to menu:View[Extensions], install and enable the following extens
 The most important function is the possibility of opening a side panel with a visualization of the Asciidoc text we are editing converted to HTML.
 [#editorconfig-extension]
 * https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig[EditorConfig for VS Code].
-This one is mandatory to automatically keep some conventions across authors (e.g. use Unix-style line endings).
+This one is mandatory to automatically keep some conventions we want to enforce across authors (e.g. use Unix-style line endings).
 You only need to install and enable the extension and the editor deals with the burden for you.
 [#spell-checker-extension]
-* https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker[Code Spell Checker].
+* https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker[Code Spell Checker] adds a spell-checking function that integrates well with Asciidoc (and other markup languages).
+* Spell checking dictionaries for the languages you need.
 English is the only language supported by default by the spell checker.
 You can get additional dictionaries going to menu:View[Extensions] and inserting "Code Spell Checker" in the search box.
+Options like "Spanish - Code Spell Checker" or "Catalan - Code Spell Checker" will appear.
+* https://marketplace.visualstudio.com/items?itemName=donjayamanne.githistory[Git History] is useful if you want to see the list of commits of a project or file.
+There are many other extensions related to Git and GitHub, but you better explore them on your own if you feel like you need them.
+
+IMPORTANT: You need to press the btn:[Reload] button that appears after installing and enabling any extension for the new functionality to be available.
 
 ==== Asciidoc preview
 
 Once you have installed the <<asciidoc-extension, Asciidoc extension>>, a new option menu:...[Open Preview to the Side] appears in the top-right drop-down menu:
 
-image::vscode-asciidoc-preview-selection.png[]
+image::vscode-asciidoc-preview-selection-annotated.png[]
 
 For a basic preview, there is no need to install Asciidoctor or any other Asciidoc processor.
 The <<asciidoc-extension, Asciidoc extension>> comes with its own renderer.

@@ -1,31 +1,31 @@
 // tag::metadata[]
 :lang: en
-//
+
 // MANDATORY. URL pointing to a Git repository with the source code of the
 // document. Something like 'https://github.com/decidim/docs-features'.
 :_public_repo_url: https://github.com/decidim/docs-authoring-guide
-//
+
 // MANDATORY. Title of the document. In web format, It appears as a heading of
 // level 1. In PDF format, it appears in a title page.
 :doctitle: Documentation Authoring and Publishing Guide
-//
+
 // OPTIONAL. Subtitle of the document.
 :_subtitle: How to create, publish, maintain and contribute to Decidim documents
-//
+
 // MANDATORY. Numeric revision in X.Y.Z format, where X, Y and Z are numbers,
 // and Z is optional.
 :revnumber: 0.1
-//
+
 // OPTIONAL. Publication date of the revision. When the default value
 // ("{docdate}") is used, the current date in format YYYY-MM-DD is automatically
 // inserted in this field every time the formatted document (web or PDF) is
 // generated. It's also possible to manually write here a fixed date.
 :revdate: {docdate}
-//
+
 // MANDATORY. See this field description in file CONTRIBUTING.adoc.
 // below.
 :authors: Guillem Marpons
-//
+
 // OPTIONAL. See this field description in file CONTRIBUTING.adoc.
 // below.
 :_editors:

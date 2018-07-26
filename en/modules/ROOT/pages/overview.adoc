@@ -1,5 +1,8 @@
 = Overview
+:experimental:
 :page-partial:
+:source-highlighter: highlightjs
+:icons: font
 
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
@@ -74,7 +77,7 @@ All Decidim's documents that are ready to be published are rendered at:
 https://docs.decidim.org[]
 ****
 
-The site is assembled from a bunch of individual documents, using a tool that can pull contents from a list of repositories and convert them to HTML.
+The site is assembled from a bunch of individual documents, using a tool called https://antora.org[Antora] that can pull contents from a list of repositories and convert them to HTML.
 
 This guide also explains:
 
