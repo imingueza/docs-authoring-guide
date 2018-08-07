@@ -15,13 +15,122 @@ include::{partialsdir}/README.adoc[tag=metadata]
 
 Our collaborative editing process is based on Git and GitHub.
 
+== Regular writers vs. Power writers
+
 We distinguish between:
 
 * *Regular writers*, that <<regular-writers, modify files online>> with the editing interface provided by GitHub.
 * *Power writers*, that can <<power-writers, work offline>> and take advantage of the better tooling available (e.g., better spell-checkers and Asciidoc renderers) for desktop editors.
 
-Collaborators that are not part of to the Decidim team can write both online and offline, depending on their proficiency with offline tools.
-See <<external-collaborators>> for more details.
+[#external-collaborators]
+== External collaborators
+
+People that does not take part in the core team that develops Decidim can use whatever editing tools they please, including those suggested in this guide for <<regular-writers, regular writers>> and <<power-writers, power writers>>.
+
+The main difference with Decidim Team members is that they are not going to immediately get writing access to Decidim's repositories (maybe never).
+They need to https://help.github.com/articles/fork-a-repo/[fork] any repository they want to modify (this does not require any authorization), and interact with the document administrators through https://help.github.com/articles/about-pull-requests/[pull requests].
+
+If you want to collaborate and have not used Git or GitHub before, you can write an email to hola@decidim.com describing the nature of your potential contribution and asking for help.
+
+[#git-workflow]
+== Our Git workflow
+
+If you are not acquainted with Git, there are some concepts you need to know:
+
+Repository ::
+A multi-file store with versioning capabilities.
+We have xref:overview.adoc#repos-and-vc[a public, shared repository] for every Decidim document, stored at the online service GitHub.
+
+Commit ::
+You are used to edit a text file and then _save_ it to make the changes permanent.
+This is not enough when working with Git.
+After saving, you need to _commit_ your work, i.e., notify to the repository that your changes ar ready to be shared.
+If you are <<regular-writers, editing online>>, you will skip the saving step and simply commit your changes.
+A commit can include changes to more than one file, and has some information associated, as author and date.
+
+Commit message ::
+Another information associated with a commit is a message introduced by the commiter.
+The message is a short description of the performed changes.
+Examples of commit messages could be: "(EN) Add section Conclusions" or "Fix some typos".
+See how we suggest to <<commit-messages, write commit messages>>.
+
+Branch ::
+We do not use this Git feature for our regular editing process, so only document administrators need to understand what a branch is, but you will see mentions to branches in user interfaces.
+A repository can contain branches, each one with its name.
+Branches can diverge (have a different set of commits) and at some point we can _merge_ two branches, i.e., add to a branch the missing commits from another branch.
+
+Power writers and external collaborators also need to understand:
+
+Repository synchronization, aka pull/push ::
+
+When <<power-writers, working offline>> we do not have only one repository, but two:
++
+--
+* The public one at GitHub.
+* A local copy (*clone*, in Git terms), with exactly the same capabilities.
+--
+Thus the workflow is more complex and consists in the following steps:
++
+--
+. (Only the first time we edit a document). Clone the public repository.
+. Edit files in the local repository and save them, using an offline editor.
+. Make a commit on the local repository, with its corresponding message.
+. Synchronize our local repository with the public one.
+Technically this consists in two steps: first a _pull_ operation that applies locally those commits made by other contributors that are present in the public repository but not in the local one, and then a _push_ that updates the public repository with our new list of changes.
+--
++
+The details on how to do all of this with Visual Studio Code are given in sections <<vscode-repo-clone>> and <<vscode-repo-sync>>.
+
+=== Our Git editing rules
+
+The synchronization process can give rise to a _merge conflict_.
+To minimize the probability of such an event we stablish the following rule:
+
+[#main-git-rule]
+.Decidim's main Git editing rules
+****
+. Only one person can edit a file of the repository at any given time [spatial/temporal separation].
+. Commit one file at a time.
+Even if you have edited more than one file (and changes are related), create a different commit for every modified file.
+We can make an exception for newly created files.
+****
+
+These rules implie that when different Decidim Team members work on the same document, they need to coordinate and decide who edit which files.
+
+We also have some secondary rules:
+
+. All Decidim Team's members work on the same branch, called `master` [single branch].
+. If you are editing offline, always synchronize repositories after every commit [synchronize often].
+
+Rules above do not apply to <<external-collaborators, external collaborators>>, as pull requests solve basically the same problems these rules try to avoid.
+
+[#comit-messages]
+=== Writing a commit message
+
+Commit messages have a subject line and a body, separated by a blank line.
+We will usually use only the subject line, but if you want to give more details about your changes, you can add a body.
+
+We try to adhere to the following rules, taken from https://chris.beams.io/posts/git-commit/[How to Write a Git Commit Message, by Chris Beams]:
+
+. Limit the subject line to 50 characters
+. Capitalize the subject line
+. Do not end the subject line with a period
+. Use the imperative mood in the subject line
+
+.Commit messages
+====
+* "Add file conclusions.adoc"
+* "(EN) Fix some typos"
+* "(ES) Mejorar sección Introducción"
+
+Quotation marks are not a part of the message.
+====
+
+Note that:
+
+. On multi-lingual documents we prefix the message with the language affected by the change.
+. When our editions affect a language other than English, we can optionally write the commit message in that language.
+For Catalan and Spanish use the infinitive verbal form.
 
 [#regular-writers]
 == Editing on-line on GitHub
@@ -149,6 +258,9 @@ A more in-depth description of this folder structure is given in xref:administra
 
 In this section we assume you have xref:prerequisites.adoc#install-vscode[installed Visual Studio Code].
 
+The main difference with respect to <<regular-writers>> is that here we will show how to edit files in a local document repository, and how to synchronize with the global, online repository.
+
+[#vscode-repo-clone]
 === Clone a repository to work offline
 
 To edit with Visual Studio Code you need to clone a GitHub repository locally in your own computer:
@@ -161,8 +273,13 @@ To edit with Visual Studio Code you need to clone a GitHub repository locally in
 . Select the destination folder.
 A new folder with the name of the repository will be created inside the folder you select.
 
-Now Visual Studio Code gives you the option of opening the new created folder, or adding it to the current workspace.
+Now Visual Studio Code gives you the option of opening the newly created folder, or adding it to the current workspace.
 We suggest to cancel and reject both options, and then follow the advice given in <<vscode-spell-checker>>.
+
+[#vscode-repo-sync]
+=== Synchronize local changes with the global repository
+
+NOTE: TODO.
 
 === Configure GitHub credentials
 
@@ -254,10 +371,20 @@ This means that, once they are set up, you can use any of the attributes in any 
 Some of the files already present in the repository use these attributes in different ways.
 For instance, file `doc-info.adoc` formats all metadata in a table for display in both HTML and PDF format.
 
-// [IMPORTANT]
-// --
-// Unfortunately, every time we change the file `en/modules/ROOT/pages/_partials/README.adoc`
-// --
+[IMPORTANT]
+--
+The file [.path]#README.adoc# in the root of the repository is meant to be an exact copy of [.path]#en/modules/ROOT/pages/_partials/README.adoc#.
+Its purpose is to show the metadata in the GitHub page of the document repository.
+
+Unfortunately, every time we change the file [.path]#en/modules/ROOT/pages/_partials/README.adoc# we need to manually update de copy in the root folder.
+You can do this either copy-and-pasting using the GitHub web interface, or using the `cp` command (and then commit and synchronize) if you are a <<power-writers, power writer>>.
+
+All of this will not be necessary once https://github.com/github/markup/issues/1095[GitHub web interface implements support for Asciidoc includes].
+--
+
+You have to <<vscode-repo-sync, commit and synchronize with GitHub>> all the changes you have introduced to the different [.paht]#README.adoc# files.
+Use a commit message similar to "(EN) Update metadata".
+Skip the "(EN)" part if you are committing changes for all languages.
 
 [#create-page]
 == Create a new documentation page
@@ -274,7 +401,7 @@ In order to add a new page to your document, follow the steps in the next sectio
 :!step:
 === (Step {counter:step:1}) Add a new Asciidoc file to the repository
 
-The file must be placed in `\{LANG}/modules/ROOT/pages`.
+The file must be placed in [.path]#\{LANG}/modules/ROOT/pages#.
 
 The file name should be based upon the title of the section it is going to contain, and must adhere to the following conventions:
 
@@ -365,7 +492,7 @@ At the beginning of the second slot you will find a directive
 ----
 
 given as example.
-Replace it if your document does not contain a file named `introduction.adoc`.
+Replace it if your document does not need a file named `introduction.adoc`.
 
 File `single-page.adoc` has three purposes:
 
@@ -396,16 +523,12 @@ To `nav.adoc`.
 The text between brackets is what will be shown in the navigation menu.
 ====
 
+== (Step {counter:step:1}) Commit and synchronize your changes
+
+The new file will not be available to the other authors until you <<vscode-repo-sync, commit and synchronize all the changes with GitHub>>.
+Use a commit message similar to "(EN) Add deliberative-democracy.adoc file".
+Skip the "(EN)" part if you are committing changes for all languages.
+
 == When something goes wrong with Git
 
 NOTE: TODO
-
-[#external-collaborators]
-== External collaborators
-
-People that does not take part in the core team that develops Decidim can use whatever editing tools they please, including those suggested in this guide for <<regular-writers, regular writers>> and <<power-writers, power writers>>.
-
-The main difference with Decidim Team members is that they are not going to immediately get writing access to Decidim's repositories (maybe never).
-They need to https://help.github.com/articles/fork-a-repo/[fork] any repository they want to modify (this does not require any authorization), and interact with the document administrators through https://help.github.com/articles/about-pull-requests/[pull requests].
-
-If you want to collaborate and have not used Git or GitHub before, you can write an email to hola@decidim.com describing the nature of your potential contribution and asking for help.

@@ -102,7 +102,7 @@ The tasks usually carried on by document administrators are described in section
 
 Writer :: She writes the contents of the document.
 // Those contributions can be of varying nature: edition, authoring, contribution or proof-reading.
-Depending on how knowledgeable they are about the needed tools, we can distinguish between *regular writers* and *power writers*.
+Depending on how knowledgeable writers are about the needed tools, we can distinguish between *regular writers* and *power writers*.
 This latter group is expected to install some software tools in their computers and participate in more complex work flows.
 +
 All the things writers need to know are hopefully explained in section xref:authoring.adoc#authoring[Document authoring].
