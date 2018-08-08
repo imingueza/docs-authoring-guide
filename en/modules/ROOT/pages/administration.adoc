@@ -221,13 +221,13 @@ The site https://docs.decidim.org[] is generated from a number of repositories w
 
 There are three kinds of repositories involved:
 
-. A number of document repositories with the contents we want to show in the documentation site. They are based on the <<import-template-repo, document template>>.
-. A _site_ repository, https://github.com/decidim/docs.decidim.org[], that contains:
-* An Antora configuration file [.path]#site.yml# that acts as a _playbook_ for the site (all document repositories are declared here, along with some global configuration options).
+. A number of *document repositories* with the contents we want to show in the documentation site. They are based on the <<import-template-repo, document template>>.
+. A *_site_ repository*, https://github.com/decidim/docs.decidim.org[], that contains:
+* An Antora configuration file [.path]#site.yml# that acts as a _playbook_ for the site (all document repositories URLs to pull from are listed here, along with some global configuration options).
 * A [.path]#landing-page# directory that contains the landing page for the whole site (and potentially other static global pages).
 The landing page is also written in Asciidoc, following the same conventions as in document repositories.
 . An https://docs.antora.org/antora/1.0/playbook/configure-ui/[Antora UI] repository: https://github.com/decidim/docs.decidim.org-antora-ui[].
-It contains all the presentation stuff (HTML templates, CSS files, Etc.)
+It contains all the presentation stuff (HTML templates, CSS files, Etc.). It is also referenced by the playbook.
 
 To publish a new document in the site you need to follow the steps in this section.
 
@@ -266,7 +266,8 @@ Here you need to change the _site_ repository, https://github.com/decidim/docs.d
 
 This time we will follow a proper Git workflow:
 
-. Make a GitHub fork of the site repository.
+. Make your own GitHub fork of the site repository.
+Work with your copy in the following numbered items.
 . Edit file [.path]#site.yml# to add the new document under the `content` section (repeatedly for every language).
 The syntax for the `content` section is described in https://docs.antora.org/antora/1.0/playbook/configure-content-sources/[the Antora Manual].
 . Edit files [.path]#landing-page/\{LANG}/modules/ROOT/nav.adoc# and add a https://docs.antora.org/antora/1.0/page/page-id/[cross-reference (xref)] to the first page of the new document (and other pages if needed).

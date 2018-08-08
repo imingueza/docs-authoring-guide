@@ -201,9 +201,11 @@ Text written in this manner is better suited to get put under version control an
 
 As explained in xref:overview.adoc#repos-and-vc[Repositories and version control], every document is stored in a _file repository_.
 All our repositories are based upon a template that sets up the same structure.
-You can navigate this structure both on GitHub or in your computer if you locally clone the GitHub repository.
 
-The following figure shows the folder hierarchy and where each type of file is placed in a repository containing one of our documents:
+There is a sub-folder for every language: [.path]#ca#, [.path]#en#, and [.path]#es#.
+Each language has a [.path]#nav.adoc# file that defines the left-hand menu, while the actual content is located in the [.path]#pages# folder.
+
+In more detail:
 
 [listing, subs="special characters, callouts, replacements, quotes"]
 ----
