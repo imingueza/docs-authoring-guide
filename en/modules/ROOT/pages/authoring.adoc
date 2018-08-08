@@ -251,7 +251,7 @@ It has the same structure as the English version.
 
 You can browse online a repository containing one of our documents, e.g. https://github.com/decidim/docs-features/tree/new-template, and check that this folder structure is fulfilled.
 
-A more in-depth description of this folder structure is given in xref:administration#repo-anatomy[Anatomy of a repository].
+A more in-depth description of this folder structure is given in xref:document-template.adoc#repo-anatomy[Anatomy of a repository].
 
 [#power-writers]
 == Power writing with Visual Studio Code
