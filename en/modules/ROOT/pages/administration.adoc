@@ -49,6 +49,7 @@ Ask to an https://github.com/orgs/decidim/people?query=+role%3Aowner[owner of th
 The steps to get the new repository are described in the following sections.
 
 :!step:
+[#import-repo-template]
 === (Step {counter:step:1}) Import the repository template for new documents
 
 NOTE: _Importing_ a repository is a different concept from _forking_ or _creating_ an empty one.
@@ -216,14 +217,66 @@ Pandoc has many other options described in the http://pandoc.org/MANUAL.html[Pan
 [#publish]
 == Publish at `docs.decidim.org`
 
-NOTE: TODO.
+The site https://docs.decidim.org[] is generated from a number of repositories with a static site generator called https://antora.org/[Antora].
+
+There are three kinds of repositories involved:
+
+. A number of document repositories with the contents we want to show in the documentation site. They are based on the <<import-template-repo, document template>>.
+. A _site_ repository, https://github.com/decidim/docs.decidim.org[], that contains:
+* An Antora configuration file [.path]#site.yml# that acts as a _playbook_ for the site (all document repositories are declared here, along with some global configuration options).
+* A [.path]#landing-page# directory that contains the landing page for the whole site (and potentially other static global pages).
+The landing page is also written in Asciidoc, following the same conventions as in document repositories.
+. An https://docs.antora.org/antora/1.0/playbook/configure-ui/[Antora UI] repository: https://github.com/decidim/docs.decidim.org-antora-ui[].
+It contains all the presentation stuff (HTML templates, CSS files, Etc.)
+
+To publish a new document in the site you need to follow the steps in this section.
+
+NOTE: TODO: how to update a document (with a preview).
 
 [#document-config-file]
-=== Set up the document configuration file
+:!step:
+=== (Step {counter:step:1}) Set up the Antora document configuration file
 
-=== Configure the navigation
+If you have <<import-repo-template, correctly applied the document template>>, your document repository contains, for every language `\{LANG}`, a file called [.path]#\{LANG}/antora.yml#.
+It is a YAML file following the syntax `property: value`.
+You have to fill up the different declared properties following the instructions given in the same file.
 
-=== Add the document to the site repository
+NOTE: Do not confuse this file with the site's playbook, called [.path]#site.yml# and stored at https://github.com/decidim/docs.decidim.org[].
+
+=== (Step {counter:step:1}) Check that [.path]#single-page.adoc# and [.path]#nav.adoc# are OK
+
+For every language `\{LANG}`, there are files called:
+
+* [.path]#\{LANG}/modules/ROOT/pages/single-page.adoc#
+* [.path]#\{LANG}/modules/ROOT/nav.adoc#
+
+If you and your collaborators have followed the instructions in section xref:authoring.adoc#create-page[Create new documentation page], then all should be ok, but this it is the moment to double-check.
+
+[IMPORTANT]
+--
+In case of documents with one single `.adoc` file (i.e., the document is simple enough to not need splitting it up), we should:
+
+* Remove file [.path]#single-page.adoc#.
+* Remove the reference to [.path]#single-page.adoc# in file [.path]#nav.adoc#.
+--
+
+=== (Step {counter:step:1}) Add the document to the site repository
+
+Here you need to change the _site_ repository, https://github.com/decidim/docs.decidim.org[].
+
+This time we will follow a proper Git workflow:
+
+. Make a GitHub fork of the site repository.
+. Edit file [.path]#site.yml# to add the new document under the `content` section (repeatedly for every language).
+The syntax for the `content` section is described in https://docs.antora.org/antora/1.0/playbook/configure-content-sources/[the Antora Manual].
+. Edit files [.path]#landing-page/\{LANG}/modules/ROOT/nav.adoc# and add a https://docs.antora.org/antora/1.0/page/page-id/[cross-reference (xref)] to the first page of the new document (and other pages if needed).
+. Edit files [.path]#landing-page/\{LANG}/modules/ROOT/pages/index.adoc# and add a https://docs.antora.org/antora/1.0/page/page-id/[cross-reference (xref)] to the first page of the new document.
+. Commit your changes and make a pull request (PR).
+If everything goes well you will an automatic comment to the PR with an URL for a preview.
+Use the preview to check that the site looks fine.
+. Either accept the PR, if you have permissions to do so, or wait.
+
+NOTE: TODO: Manually deploy from the Netlify web interface is needed at the moment.
 
 == Generate a PDF file
 
@@ -232,3 +285,14 @@ NOTE: TODO.
 // == Merge changes from writers
 
 // == Update the configuration
+
+== Add a new language to a document
+
+Here we have two different cases:
+
+. Add a language already present in the document template (Catalan, English, Spanish).
+. Add a new language not present in the template.
+
+For the first case you can basically follow the same steps needed for xref:authoring.adoc#create-page[creating a new page], but this time you may need to add more than one file.
+
+In the second case, you can simply replicate the necessary directory structure for the new language, but in case the new language is going to be used in many future documents, you better xref:document-template.adoc[update the template].

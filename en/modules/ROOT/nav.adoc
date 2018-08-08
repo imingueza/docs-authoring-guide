@@ -8,8 +8,11 @@
 * xref:overview.adoc[Overview]
 * xref:prerequisites.adoc[Prerequisites]
 * Guides
-** xref:authoring.adoc[For authors]
+** xref:authoring.adoc[For documentation writers]
 ** xref:administration.adoc[For document administrators]
+* Appendixes
+** xref:document-template.adoc[Document template in detail]
+** xref:git-workflow-rationale.adoc[Rationale for Decidim's Git workflow]
 
 .Other formats
 * xref:single-page.adoc[Single page (HTML)]

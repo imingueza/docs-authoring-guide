@@ -1,5 +1,5 @@
 [appendix]
-= Decidim's Git workflow rationale
+= The rationale for Decidim's Git workflow
 :experimental:
 :page-partial:
 :source-highlighter: highlightjs

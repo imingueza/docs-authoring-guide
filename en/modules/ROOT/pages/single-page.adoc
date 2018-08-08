@@ -48,10 +48,8 @@ include::authoring.adoc[]
 
 include::administration.adoc[]
 
+include::document-template.adoc[]
 
-[appendix]
-// (3/3) ADD BELOW THE LIST OF APPENDIXES. IMPORTANT: PUT A BLANK LINE BETWEEN
-// INCLUDES.
-
+include::git-workflow-rationale.adoc[]
 
 :leveloffset: -1

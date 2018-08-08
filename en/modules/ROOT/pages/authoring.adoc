@@ -51,7 +51,7 @@ A commit can include changes to more than one file, and has some information ass
 Commit message ::
 Another information associated with a commit is a message introduced by the commiter.
 The message is a short description of the performed changes.
-Examples of commit messages could be: "(EN) Add section Conclusions" or "Fix some typos".
+Examples of commit messages could be: "(EN) Add section Conclusions" or "(EN) Fix some typos".
 See how we suggest to <<commit-messages, write commit messages>>.
 
 Branch ::
@@ -84,7 +84,7 @@ The details on how to do all of this with Visual Studio Code are given in sectio
 === Our Git editing rules
 
 The synchronization process can give rise to a _merge conflict_.
-To minimize the probability of such an event we stablish the following rule:
+To minimize the probability of such an event we establish the following rule:
 
 [#main-git-rule]
 .Decidim's main Git editing rules
@@ -95,7 +95,7 @@ Even if you have edited more than one file (and changes are related), create a d
 We can make an exception for newly created files.
 ****
 
-These rules implie that when different Decidim Team members work on the same document, they need to coordinate and decide who edit which files.
+These rules imply that when different Decidim Team members work on the same document, they need to coordinate and decide who edits which files.
 
 We also have some secondary rules:
 
@@ -143,11 +143,8 @@ Once you are xref:prerequisites.adoc#create-github-account[logged into GitHub] y
 
 NOTE: TODO: Adapt https://github.com/WGBH/pbucore/wiki/Contributing-to-the-project-through-Github-web-interface.
 
-The only other sections you probably need to read for this lightweight editing workflow are:
-
-* <<asciidoc>>
-
-* <<folder-structure>>
+The only other section you probably need to read for this lightweight editing workflow is <<asciidoc>>.
+In the case you want to navigate a repository in GitHub you better read <<folder-structure>> as well.
 
 [#asciidoc]
 == How to write Asciidoc
@@ -523,7 +520,7 @@ To `nav.adoc`.
 The text between brackets is what will be shown in the navigation menu.
 ====
 
-== (Step {counter:step:1}) Commit and synchronize your changes
+=== (Step {counter:step:1}) Commit and synchronize your changes
 
 The new file will not be available to the other authors until you <<vscode-repo-sync, commit and synchronize all the changes with GitHub>>.
 Use a commit message similar to "(EN) Add deliberative-democracy.adoc file".
