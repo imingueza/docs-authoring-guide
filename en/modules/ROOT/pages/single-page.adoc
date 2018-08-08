@@ -1,9 +1,7 @@
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
-
 include::{partialsdir}/README.adoc[tag=metadata]
-
 ifndef::env-site,env-github[]
 :toc: left
 endif::[]
@@ -51,5 +49,3 @@ include::administration.adoc[]
 include::document-template.adoc[]
 
 include::git-workflow-rationale.adoc[]
-
-:leveloffset: -1
