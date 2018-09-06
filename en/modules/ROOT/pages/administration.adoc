@@ -252,14 +252,6 @@ For every language `\{LANG}`, there are files called:
 
 If you and your collaborators have followed the instructions in section xref:authoring.adoc#create-page[Create new documentation page], then all should be ok, but this it is the moment to double-check.
 
-[IMPORTANT]
---
-In case of documents with one single `.adoc` file (i.e., the document is simple enough to not need splitting it up), we should:
-
-* Remove file [.path]#single-page.adoc#.
-* Remove the reference to [.path]#single-page.adoc# in file [.path]#nav.adoc#.
---
-
 === (Step {counter:step:1}) Add the document to the site repository
 
 Here you need to change the _site_ repository, https://github.com/decidim/docs.decidim.org[].
