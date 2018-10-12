@@ -255,10 +255,10 @@ Open the Visual Studio Code integrated terminal (menu:View[Integrated Terminal])
 gem install asciidoctor
 
 [source, shell]
-gem install asciidoctror-pdf --pre
+gem install asciidoctor-pdf --pre
 
 [source, shell]
-gem install asciidoctror-diagram
+gem install asciidoctor-diagram
 
 [NOTE]
 On Windows, the first command will probably ask you about firewall permissions.
